@@ -1,68 +1,72 @@
-
-
+import React from "react";
+import "./App.css"
+import Cadastro from "./Componentes/cadastro";
+import Listagem from "./Componentes/Listagem.js"
+import'react-toastify/dist/ReactToastify.css';
+import{ToastContainer}from"react-toastify";
 function App() {
 
-  //como funciona objetos em JavaScript
-  const usuario = {
-    //chave
-    nome: "James",
-    idade: 12,
-    status: true,
-    endereco: {
-       rua: "Rua X",
-       numero: 139,
-       complemento: "ap 20"
-     },
-     vacinas_covid19: ["pfizer", "pfizer", "pfizer", "J&J",]
+  
+   
 
+  // Como funciona objeto em javascript
+  const usuario = {
+    //chave: valor
+    nome:"Jose",
+    idade: 19,
+    status:true,
+    endereco: {
+      rua: "Londres",
+      numero: 139,
+      complemento:"ap 20"
+    },
+    vacinas_covid19:["Pfizer", "Pfizer", "Pfize", "J&J"]
   }
 
   const qnt_vacina = usuario.vacinas_covid19.length - 1
 
-  //Como usar um array com objetos dentro
-  const usuarios = [
-   {nome: "Conrado", status: true },
-   {nome: "Lores", status: false },
-   {nome: "Maria", status: true },
-   {nome: "Pedrita", status: true },
+  const usuarios_padrao = [
+    
+      {nome: "Jose", status: true, email: "jose.roberto@gmail.com",},
+      {nome: "CanoaFurada", status: false, email: "Cnoafurada.furada@gmail.com",},
+      {nome: "Lopez", status: true, email: "Lopez.lopez@gmail.com",},
+      {nome: "Kelvin", status: true, email: "Kelvin.dragons@gmail.com"}
+
+    
   ]
 
-  console.log(usuarios)
-
-  //console.log(usuario.nome.rua, usuario.endereco.complemento)
-  //console.log(Object.keys(usuario))
+  const [usuarios, alteraUsuarios] = React.useState(usuarios_padrao);
 
   
   return (
     <div className="container">
 
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauserOnHover
+        theme="dark"
+        />
+
       <div className="d-flex justify-content-around">
+        
+        
+        <Listagem usuarios={usuarios}/>
+        <Cadastro usuarios={usuarios} alteraUsuarios={alteraUsuarios} />
 
-        <div style={estilo}>
-          <h2> Listagem </h2>
+        
 
-          <p> Nome: {usuario.nome} </p>
-          <p> Idade: {usuario.idade}   </p>
-          <p> Rua: {usuario.endereco.rua} </p>
-          <p> 1 vacina: {usuario.vacinas_covid19[0]} </p>
-          <p> ultima vacina: {usuario.vacinas_covid19[ qnt_vacina]} </p>
-        </div>
-
-        <div style={estilo}>
-          <h2> Cadastro </h2>
-        </div>
-
-      </div>
-
+      </div >
+      
     </div>
   );
 }
 
-const estilo = {
-  width: 600,
-  border: "5px solid #000",
-  padding: 20,
-  margintop: 50 
- }
+
 
 export default App;
