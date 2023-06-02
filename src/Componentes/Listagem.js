@@ -24,7 +24,6 @@ function Listagem(props){
               <p>email:{item.email}</p>
               <p> status: {item.status == true ?"Ativo" :"Banido"} </p>
               <button onClick={ ()=> remover(item) } className="btn btn-secondary btn-sm"> Remover </button>
-              <button onClick={ ()=> remover(item) } className="btn btn-warning btn-sm"> Alterar </button>
               </div>
               
             )
