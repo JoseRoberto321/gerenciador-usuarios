@@ -4,6 +4,7 @@ import Cadastro from "./Componentes/cadastro";
 import Listagem from "./Componentes/Listagem.js"
 import'react-toastify/dist/ReactToastify.css';
 import{ToastContainer}from"react-toastify";
+
 function App() {
 
   
@@ -56,7 +57,7 @@ function App() {
       <div className="d-flex justify-content-around">
         
         
-        <Listagem usuarios={usuarios}/>
+        <Listagem usuarios={usuarios} alteraUsuarios={alteraUsuarios}/>
         <Cadastro usuarios={usuarios} alteraUsuarios={alteraUsuarios} />
 
         
