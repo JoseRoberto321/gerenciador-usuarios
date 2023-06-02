@@ -1,0 +1,7 @@
+.caixa{
+    width: 600px;
+    border: 1px solid #CCC;
+    padding: 20px;
+    margin-top: 50px;
+    overflow: auto;
+}
