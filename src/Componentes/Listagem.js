@@ -10,7 +10,10 @@ function Listagem(props){
         console.log(novos_usuarios)
         props.alteraUsuarios(novos_usuarios)
         }
-
+        
+        function atualiza(usuario){
+          props.alteraEditando(usuario)
+        }
     
 
     return(
@@ -24,6 +27,7 @@ function Listagem(props){
               <p>email:{item.email}</p>
               <p> status: {item.status == true ?"Ativo" :"Banido"} </p>
               <button onClick={ ()=> remover(item) } className="btn btn-secondary btn-sm"> Remover </button>
+              <button onClick={ ()=> atualiza(item) } className="btn btn-warning btn-sm"> Atualizar </button>
               </div>
               
             )
