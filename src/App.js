@@ -4,38 +4,30 @@ import Cadastro from "./Componentes/cadastro";
 import Listagem from "./Componentes/Listagem.js"
 import'react-toastify/dist/ReactToastify.css';
 import{ToastContainer}from"react-toastify";
+import supabase from './supabase';
+
 function App() {
 
   
    
+  const [usuarios, alteraUsuarios] = React.useState( []);
 
-  // Como funciona objeto em javascript
-  const usuario = {
-    //chave: valor
-    nome:"Jose",
-    idade: 19,
-    status:true,
-    endereco: {
-      rua: "Londres",
-      numero: 139,
-      complemento:"ap 20"
-    },
-    vacinas_covid19:["Pfizer", "Pfizer", "Pfize", "J&J"]
+  function buscarTodos(){
+      supabase.from("usuarios").select()
+      .then( Response => {
+        console.log("Conexao bem sucedida!");
+        console.log( Response.data );
+        alteraUsuarios( Response.data);
+      })
+      .catch( Response => {
+       console.log("Deu erro na conexao");
+       console.log( Response )
+      })
   }
 
-  const qnt_vacina = usuario.vacinas_covid19.length - 1
-
-  const usuarios_padrao = [
-    
-      {nome: "Jose", status: true, email: "jose.roberto@gmail.com",},
-      {nome: "CanoaFurada", status: false, email: "Cnoafurada.furada@gmail.com",},
-      {nome: "Lopez", status: true, email: "Lopez.lopez@gmail.com",},
-      {nome: "Kelvin", status: true, email: "Kelvin.dragons@gmail.com"}
-
-    
-  ]
-
-  const [usuarios, alteraUsuarios] = React.useState(usuarios_padrao);
+  React.useEffect( ()=> {
+    buscarTodos();
+  },[])
 
   
   return (
